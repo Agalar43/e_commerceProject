@@ -1,6 +1,6 @@
-using e_commerceApp.Models;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Repositories;
 namespace e_commerceApp.Components
 {
     public class CategoriesMenuViewComponent : ViewComponent

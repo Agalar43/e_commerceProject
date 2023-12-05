@@ -547,6 +547,49 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
+      },
+      "Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repositories.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Entities": "1.0.0",
+          "Repositories": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -1251,13 +1294,31 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "Repositories/1.0.0": {
+      "type": "project",
+      "path": "../Repositories/Repositories.csproj",
+      "msbuildProject": "../Repositories/Repositories.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.0"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.0",
+      "Repositories >= 1.0.0",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1293,7 +1354,17 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Entities\\Entities.csproj"
+            },
+            "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Repositories\\Repositories.csproj": {
+              "projectPath": "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Repositories\\Repositories.csproj"
+            },
+            "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\Services\\Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

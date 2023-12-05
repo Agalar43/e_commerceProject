@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using e_commerceApp.Models;
+using Repositories;
 
 #nullable disable
 
@@ -17,7 +17,7 @@ namespace ecommerceApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
-            modelBuilder.Entity("e_commerceApp.Models.Category", b =>
+            modelBuilder.Entity("Entities.Models.Category", b =>
                 {
                     b.Property<int>("CategoryID")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace ecommerceApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("e_commerceApp.Models.Product", b =>
+            modelBuilder.Entity("Entities.Models.Product", b =>
                 {
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
@@ -103,16 +103,16 @@ namespace ecommerceApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("e_commerceApp.Models.Product", b =>
+            modelBuilder.Entity("Entities.Models.Product", b =>
                 {
-                    b.HasOne("e_commerceApp.Models.Category", "category")
+                    b.HasOne("Entities.Models.Category", "category")
                         .WithMany("products")
                         .HasForeignKey("CategoryID");
 
                     b.Navigation("category");
                 });
 
-            modelBuilder.Entity("e_commerceApp.Models.Category", b =>
+            modelBuilder.Entity("Entities.Models.Category", b =>
                 {
                     b.Navigation("products");
                 });
