@@ -23,9 +23,9 @@ namespace e_commerceApp.Controllers
             return View(model);
         }
 
-        public IActionResult Get(int id)
+        public IActionResult Get([FromRoute(Name ="id")]int id)
         {
-            Product product = _context.Products.First(p => p.ProductID.Equals(id));
+            var product = _manager.ProductService.GetOneProduct(id,false);
             return View(product);
         }
 
@@ -39,6 +39,7 @@ namespace e_commerceApp.Controllers
             }
 
             return View(category.products);
+
         }
         
     }
