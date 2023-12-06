@@ -1,0 +1,110 @@
+@page "/get"
+@model CartModel
+
+
+<section class="cart-page">
+    <div class="container">
+        <div class="cart-page-wrapper">
+            <div class="cart-form">
+                <div class="shop-table-wrapper">
+                    <table class="shop-table">
+                        <thead>
+                            <th class="product-thumbnail">&nbsp;</th>
+
+                            <th class="product-name">İsim</th>
+                            <th class="product-price">Fiyat</th>
+                            <th class="product-quantity">Adet</th>
+                              
+                            <th class="product-quantity">Operations</th>
+                              <th class="product-thumbnail">&nbsp;</th>
+                            
+                           
+                        </thead>
+                        <tbody class="cart-wrapper">
+                            @foreach (var line in Model.Cart?.Lines ?? Enumerable.Empty<CartLine>())
+                            {
+                                <tr class="cart-item">
+                                    <form method="post" asp-page-handler="Remove">
+
+                                        <td class="cart-image">
+                                            <img src="" alt="" />
+                                            <input type="hidden" name="id" value="@line.Product.ProductID">
+                                            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                                Remove
+                                            </button>
+                                        </td>
+
+                                    </form>
+
+
+                                    <td>@line.Product.ProductName</td>
+                                    <td>
+                                        @line.Product.unitPrice.ToString("c")
+                                    </td>
+                                    <td class="product-quantity">
+                                        <p style="width: 40px; margin-top:5px;">@line.Quantity</p>
+                                    </td>
+                                    <td  class="product-quantity" style="margin-right:20px;">
+                                        <div class="btn-group">
+                                            <a href="" style="margin-top: 5px; " class="btn btn-warning "><i
+                                                    class="fa fa-plus"></i></a>
+                                            <a style="margin-top: 5px;" class="btn btn-warning">
+                                                <i class="fa-solid fa-minus"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="actions-wrapper">
+                        <div class="coupon">
+                            <input type="text" class="input-text" placeholder="Kupon Kodu" />
+                            <button class="btn">Kuponu Uygula</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cart-collaterals">
+                <div class="cart-totals">
+                    <h2>Toplam Fiyat</h2>
+                    <table>
+                        <tbody>
+                            <tr class="cart-subtotal">
+                                <th>Ara Toplam</th>
+                                <td>
+                                    <span id="subtotal"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Kargo</th>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <label>
+                                                Kargo Ücreti: 30Tl
+                                                <input type="checkbox" />
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Toplam</th>
+                                <td>
+                                    <strong> @Model.Cart?.ComputeTotalValue().ToString("c")</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="checkout">
+                        <button class="btn btn-lg">Ödeme Yap</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
