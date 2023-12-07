@@ -70,3 +70,4 @@ C:\Users\asus\Desktop\AgalarWebProjesi\e_commerce\e_commerceApp\bin\Debug\net7.0
 C:\Users\asus\Desktop\AgalarWebProjesi\e_commerce\e_commerceApp\bin\Debug\net7.0\Repositories.pdb
 C:\Users\asus\Desktop\AgalarWebProjesi\e_commerce\e_commerceApp\bin\Debug\net7.0\Services.dll
 C:\Users\asus\Desktop\AgalarWebProjesi\e_commerce\e_commerceApp\bin\Debug\net7.0\Services.pdb
+C:\Users\asus\Desktop\AgalarWebProjesi\e_commerce\e_commerceApp\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

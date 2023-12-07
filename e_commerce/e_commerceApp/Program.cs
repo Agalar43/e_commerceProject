@@ -1,5 +1,7 @@
+using e_commerceApp.Infrastructe.Extensions;
 using e_commerceApp.Models;
 using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
@@ -26,9 +28,20 @@ builder.Services.AddDbContext<RepositoryContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("sqlconnection"),
     b => b.MigrationsAssembly("e_commerceApp")
     );
+    options.EnableSensitiveDataLogging(true);
 });
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.RequireUniqueEmail = true;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
+
+}).AddEntityFrameworkStores<RepositoryContext>();
 
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -45,7 +58,11 @@ var app = builder.Build();
 app.UseSession();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
+
+//UseAuthentication ve UseAuthorization routing ve enpointler arasında olmalı
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
@@ -54,4 +71,8 @@ app.UseEndpoints(endpoints =>
     );
     endpoints.MapRazorPages();
 });
+//UseAuthentication ve UseAuthorization routing ve enpointler arasında olmalı
+
+
+app.ConfigureDefaultAdminUser();
 app.Run();

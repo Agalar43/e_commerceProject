@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\e_commerceApp\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\asus\\Desktop\\AgalarWebProjesi\\e_commerce\\e_commerceApp\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },

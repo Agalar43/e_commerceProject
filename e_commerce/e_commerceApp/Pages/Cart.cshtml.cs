@@ -10,12 +10,17 @@ namespace e_commerceApp.Pages
     {
         private readonly IServiceManager _manager;
         public Cart Cart { get; set; }//Ioc 
+        public string ReturnUrl { get; set; } = "/";
         public CartModel(IServiceManager manager, Cart cartService)
         {
             _manager = manager;
             Cart = cartService;
         }
-        public string ReturnUrl { get; set; } = "/";
+        public void OnGet(string returnUrl)
+        {
+            ReturnUrl = returnUrl ?? "/";
+
+        }
 
         public IActionResult OnPost(int productId, string returnUrl)
         {
@@ -27,7 +32,7 @@ namespace e_commerceApp.Pages
                 Cart.AddItem(product, 1);
                 // HttpContext.Session.SetJson<Cart>("cart",Cart);
             }
-            return Page(); // returnUrl
+            return RedirectToPage(new { returnUrl = returnUrl }); // returnUrl
         }
 
         public IActionResult OnPostRemove(int id, string returnUrl)
@@ -35,7 +40,7 @@ namespace e_commerceApp.Pages
             //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             Cart.RemoveLine(Cart.Lines.First(cl => cl.Product.ProductID.Equals(id)).Product);
             //HttpContext.Session.SetJson<Cart>("cart", Cart);
-            return Page();
+            return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
 }
